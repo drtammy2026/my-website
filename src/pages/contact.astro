@@ -218,8 +218,20 @@ const inquiryTypes = [
     const status = form.querySelector<HTMLElement>('.form-status')!;
     const showStatus = (type: string, msg: string) => { status.className = 'form-status ' + type; status.textContent = msg; };
 
+    // Fallback: email Dr. Tammy directly. The address is assembled here, only after a
+    // send attempt, so it never appears as plain text in the page for spam bots to collect.
+    const showEmailFallback = (lead: string) => {
+      const address = ['coach', 'drtammyyoung.com'].join('@');
+      status.className = 'form-status error';
+      status.textContent = lead + ' Please email Dr. Tammy directly at ';
+      const link = document.createElement('a');
+      link.href = 'mailto:' + address + '?subject=' + encodeURIComponent('Website inquiry');
+      link.textContent = address;
+      status.append(link, '.');
+    };
+
     if (form.action.includes('YOUR_FORM_ID')) {
-      showStatus('error', "This form isn't connected yet. Please check back soon.");
+      showEmailFallback("Sorry, our online form isn't working yet, and your message was not sent.");
       return;
     }
     btn.disabled = true;
@@ -234,7 +246,7 @@ const inquiryTypes = [
     } catch {
       btn.disabled = false;
       btn.textContent = 'Send My Message';
-      showStatus('error', "Sorry, something went wrong and your message wasn't sent. Please try again in a moment.");
+      showEmailFallback("Sorry, something went wrong and your message wasn't sent.");
     }
   });
 </script>
