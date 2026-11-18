@@ -2,9 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Faq from '../../components/Faq.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { SHOW_DRAFTS } from '../../data/site';
 import { restoreWithinFaqs } from '../../data/faqs';
 ---
 <Base title="Restore Within" description="Restore Within: Spirit-led coaching for personal healing with Dr. Tammy Young. Healing what has been wounded, restoring what has been lost.">
@@ -39,8 +37,6 @@ import { restoreWithinFaqs } from '../../data/faqs';
     </div>
   </section>
 
-  {/* Stage descriptions still needed: shown only on the in-progress branch */}
-  {SHOW_DRAFTS && (
   <section class="section white">
     <div class="section-inner">
       <div class="section-intro">
@@ -48,13 +44,12 @@ import { restoreWithinFaqs } from '../../data/faqs';
         <h2 class="section-heading small">One step at a time</h2>
       </div>
       <div class="stage-grid">
-        <div class="stage"><p class="stage-num">Stage One</p><h3>Begin</h3><Placeholder>What happens in Begin: length, focus, what clients experience.</Placeholder></div>
-        <div class="stage"><p class="stage-num">Stage Two</p><h3>Journey</h3><Placeholder>What happens in Journey.</Placeholder></div>
-        <div class="stage"><p class="stage-num">Stage Three</p><h3>Deepen</h3><Placeholder>What happens in Deepen.</Placeholder></div>
+        <div class="stage"><p class="stage-num">Stage One</p><h3>Begin</h3><p>We find the root together. Through careful listening, a short intake form, and honest questions, you name what is really going on.</p></div>
+        <div class="stage"><p class="stage-num">Stage Two</p><h3>Journey</h3><p>We work through the limiting beliefs, wrong mindsets, and painful experiences that keep you stuck. You won't have to relive every detail. The goal is to change how you see what happened.</p></div>
+        <div class="stage"><p class="stage-num">Stage Three</p><h3>Deepen</h3><p>In a safe, steady space, you receive healing and practice new patterns of thinking, so the change lasts.</p></div>
       </div>
     </div>
   </section>
-  )}
 
   <section class="section cream">
     <div class="section-inner">

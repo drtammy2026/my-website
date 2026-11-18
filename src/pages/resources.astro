@@ -32,7 +32,7 @@ const groups = resourceGroups
                 {r.needs && <div style="margin-bottom:1.2rem"><Placeholder>{r.needs}</Placeholder></div>}
                 {r.url && (
                   <a class="resource-link" href={r.url} target="_blank" rel="noopener">
-                    Visit Website <span aria-hidden="true">↗</span><span class="form-hp"> (opens in a new tab)</span>
+                    {r.linkLabel ?? 'Visit Website'} <span aria-hidden="true">↗</span><span class="form-hp"> (opens in a new tab)</span>
                   </a>
                 )}
               </div>

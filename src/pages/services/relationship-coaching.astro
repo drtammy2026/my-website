@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { relationshipFaqs } from '../../data/faqs';
+---
+<Base title="Relationship Coaching" description="Relationship coaching with Dr. Tammy Young: bringing healing and hope to the relationships that matter most.">
+  <PageHeader eyebrow="Couples & Relationships">
+    <h1>Relationship <em>Coaching</em></h1>
+    <p class="lede">Bringing healing and hope to the relationships that matter most.</p>
+    <p class="tagline">Often what strains a relationship runs deeper than the latest disagreement.</p>
+  </PageHeader>
+
+  <section class="section white">
+    <div class="section-inner narrow">
+      <p class="section-eyebrow">Who It's For</p>
+      <h2 class="section-heading small">Relationship coaching may help if…</h2>
+      <ul class="fit-list">
+        <li>You're married, engaged, or dating, and the same hurts keep coming up between you.</li>
+        <li>You want to work on your relationship, even if your partner isn't ready yet.</li>
+        <li>Something from the past seems to be shaping how you love, trust, or react today.</li>
+        <li>You're tired of arguing about the surface and want to get to the root.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section sage">
+    <div class="section-inner narrow prose">
+      <p class="section-eyebrow">What It Looks Like</p>
+      <h2 class="section-heading small">Growing <em>toward each other</em> again</h2>
+      <p>Relationship coaching is for couples, or for one partner on their own. Dr. Tammy doesn't sit in the seat of the expert telling you what's wrong. She partners with you to find the answers that are already inside you, and to deal with the beliefs and old wounds that keep you stuck.</p>
+      <p>Sessions are 50 minutes. They work best in person, and Dr. Tammy also coaches virtually all the time on a secure Zoom link.</p>
+      <p class="serif-note">Often, when one person starts to change, the whole relationship begins to change with them.</p>
+    </div>
+  </section>
+
+  <section class="section cream">
+    <div class="section-inner">
+      <div class="section-intro">
+        <p class="section-eyebrow">Questions</p>
+        <h2 class="section-heading small">About Relationship Coaching</h2>
+      </div>
+      <Faq items={relationshipFaqs} idPrefix="relationship" />
+      <p class="faq-more">Questions about therapy, faith, sessions, or confidentiality? See the <a href="/faq">general FAQ</a>.</p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Take the <em>first step</em> together"
+    text="Reach out for a complimentary discovery call. You can come on your own or together."
+    href="/contact?type=relationship"
+    label="Ask About Relationship Coaching"
+  />
+</Base>

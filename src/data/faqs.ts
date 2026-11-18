@@ -20,7 +20,7 @@ export const mustBeChristian: FaqItem = {
 export const sessionLooksLike: FaqItem = {
   q: 'What does a session actually look like?',
   a: [
-    'Every session is different because every person is different. Generally, we begin by checking in on where you are, then we go to work: identifying patterns, beliefs, memories, or wounds that are keeping you stuck. I use a combination of Trauma Transformation Coaching™, NLP, timeline work, inner healing, and Spirit-led tools tailored to what you need in that moment. Sessions are conducted virtually via video call. They are always confidential, always safe, and always focused on moving you toward freedom.',
+    'Every session is different because every person is different. Generally, we begin by checking in on where you are, then we go to work: identifying patterns, beliefs, memories, or wounds that are keeping you stuck. I use a combination of Trauma Transformation Coaching™, NLP, timeline work, inner healing, and Spirit-led tools tailored to what you need in that moment. Sessions are 50 minutes and can happen in person or virtually on a secure Zoom link. They are always confidential, always safe, and always focused on moving you toward freedom.',
   ],
 };
 
@@ -65,8 +65,10 @@ export const howReady: FaqItem = {
 // Placeholder questions shared by several services
 export const costAndPackages: FaqItem = {
   q: 'What does it cost?',
-  a: ['Pricing, packages, and whether there is a sliding scale or payment plan.'],
-  placeholder: true,
+  a: [
+    "We'll talk about pricing on your complimentary discovery call, once we know what kind of coaching fits you. Individual coaching starts at $250 per session. Team and group engagements are priced as packages.",
+    "A sliding scale based on household income is often available. It works on the honor system: you will never be asked to prove your finances.",
+  ],
 };
 
 // ---------------------------------------------------------------------------
@@ -84,15 +86,24 @@ export const restoreWithinFaqs: FaqItem[] = [
 
 export const leadUnboundFaqs: FaqItem[] = [
   leaderOrCrisis,
-  { q: 'Do you work with ministry teams or whole organizations?', a: ['Whether Lead Unbound is available for teams, staff, or boards, and what that looks like.'], placeholder: true },
-  { q: 'What does a typical Lead Unbound engagement look like?', a: ['Length, session frequency, and what happens in the Discover, Develop, and Multiply stages.'], placeholder: true },
+  { q: 'Do you work with ministry teams or whole organizations?', a: ['Yes. Lead Unbound is for leaders in any kind of organization. That includes ministry teams and staff, church board members, altar and prayer teams, connect teams, and high-level volunteers who support an organization or ministry.'] },
+  { q: 'What does a typical Lead Unbound engagement look like?', a: ['It depends on the setting. For groups, Lead Unbound can be a one-day workshop or a weekend retreat with three or four sessions. For individual leaders, it is usually six sessions, and you can add more as needed.'] },
 ];
 
 export const relationshipFaqs: FaqItem[] = [
-  { q: 'Do we both need to take part?', a: ['Whether one partner can come alone, and how sessions work with both partners.'], placeholder: true },
-  { q: 'Is this marriage counseling?', a: ['How relationship coaching differs from marriage counseling or couples therapy, and when she refers out.'], placeholder: true },
-  { q: 'Do you work with engaged or dating couples?', a: ['Who relationship coaching is for: married, engaged, dating, or individuals working on relationships in general.'], placeholder: true },
-  { q: 'What if we are in crisis?', a: ['What to do in a crisis (e.g. infidelity, separation, safety concerns) and when to seek other help first.'], placeholder: true },
+  { q: 'Do we both need to take part?', a: [
+    "No. Usually the person who reaches out is the one who wants change, and that's a good place to start. Often, as one partner begins to grow, the other notices and starts asking questions.",
+    "Sometimes Dr. Tammy will invite your partner to join the sessions. If they aren't ready, we'll work with that when it comes.",
+  ] },
+  { q: 'Is this marriage counseling?', a: [
+    "No. A licensed counselor works as the expert, telling a couple what the problems are and how to fix them. A coach partners with you to find the answers that are already inside you. Careful listening helps you get to what is keeping you stuck, often faster than you'd expect.",
+    "If something comes up that is outside what a coach should handle, such as a mental health or medical issue, Dr. Tammy will refer you to the right professional.",
+  ] },
+  { q: 'Do you work with engaged or dating couples?', a: ["Yes. Relationship coaching is for married, engaged, and dating couples, and for individuals working through challenges in any relationship."] },
+  { q: 'What if we are in crisis?', a: [
+    "If you are ever in physical danger, call 911 or contact the police right away. Your safety comes first.",
+    "Infidelity and separation are deeply painful, and they are a kind of trauma. If no one is in physical danger, trauma transformation coaching can be a good fit, because healing that trauma matters for your whole health.",
+  ] },
 ];
 
 export const fosterAdoptiveFaqs: FaqItem[] = [
