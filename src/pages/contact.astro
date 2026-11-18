@@ -201,7 +201,8 @@ const inquiryTypes = [
       : "You don't have to have the words exactly right. Just start where you are.";
     message.required = !isSpeaking;
     const chosen = form.querySelector<HTMLInputElement>(`input[data-type="${type}"]`);
-    subject.value = `New ${chosen ? chosen.value.toLowerCase() : ''} inquiry from the Dr. Tammy Young website`;
+    const kind = type === 'unsure' || !chosen ? 'general' : chosen.value.toLowerCase();
+    subject.value = `New ${kind} inquiry from the Dr. Tammy Young website`;
   }
   sections.forEach((s) => (s.disabled = true));
   radios.forEach((r) => r.addEventListener('change', () => showSection(r.dataset.type!)));
