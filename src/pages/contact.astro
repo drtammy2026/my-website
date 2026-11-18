@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Placeholder from '../components/Placeholder.astro';
 
 // Formspree form "Website Contact Form" in Dr. Tammy's Formspree account; delivers to her coach@ address.
 const FORMSPREE_ACTION = 'https://formspree.io/f/mppdroqe';
@@ -69,28 +68,38 @@ const inquiryTypes = [
               </div>
             </div>
             <div class="form-field">
-              <label for="phone">Phone <span class="form-optional">(optional)</span></label>
+              <label for="phone">Phone <span class="form-optional" id="phone-optional">(optional)</span></label>
               <input type="tel" id="phone" name="phone" autocomplete="tel">
             </div>
 
-            <!-- SPEAKING -->
+            <!-- SPEAKING (fields from Dr. Tammy's "Schedule an Event" list) -->
             <fieldset class="form-section" data-section="speaking" hidden>
               <p class="form-section-title">About your event</p>
               <div class="form-row">
                 <div class="form-field">
                   <label for="organization">Organization or Church</label>
-                  <input type="text" id="organization" name="organization" required>
+                  <input type="text" id="organization" name="organization" autocomplete="organization" required>
                 </div>
                 <div class="form-field">
-                  <label for="event_name">Event Name <span class="form-optional">(optional)</span></label>
-                  <input type="text" id="event_name" name="event_name">
+                  <label for="org_website">Website <span class="form-optional">(optional)</span></label>
+                  <input type="url" id="org_website" name="org_website" inputmode="url" placeholder="https://">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-field">
-                  <label for="event_date">Event Date(s)</label>
-                  <input type="text" id="event_date" name="event_date" placeholder="e.g. March 14–15, 2027" required>
+                  <label for="event_type">Type of Event</label>
+                  <input type="text" id="event_type" name="event_type" placeholder="e.g. women's retreat, leadership conference" required>
                 </div>
+                <div class="form-field">
+                  <label for="event_date">Event Date(s)</label>
+                  <input type="text" id="event_date" name="event_date" placeholder="e.g. March 14 and 15, 2027" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="event_location">Where is it?</label>
+                <input type="text" id="event_location" name="event_location" placeholder="Venue, city, state or country" required>
+              </div>
+              <div class="form-row">
                 <div class="form-field">
                   <label for="event_format">Format</label>
                   <select id="event_format" name="event_format" required>
@@ -100,20 +109,27 @@ const inquiryTypes = [
                     <option>Hybrid</option>
                   </select>
                 </div>
-              </div>
-              <div class="form-field">
-                <label for="event_location">Where is it?</label>
-                <input type="text" id="event_location" name="event_location" placeholder="Venue, city, state or country" required>
+                <div class="form-field">
+                  <label for="speaking_sessions">Number of Speaking Sessions</label>
+                  <select id="speaking_sessions" name="speaking_sessions" required>
+                    <option value="">Select…</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4 or more</option>
+                    <option>Not sure yet</option>
+                  </select>
+                </div>
               </div>
               <div class="form-row">
                 <div class="form-field">
-                  <label for="audience_size">How many people?</label>
+                  <label for="audience_size">Expected Attendance</label>
                   <select id="audience_size" name="audience_size" required>
                     <option value="">Select…</option>
                     <option>Under 50</option>
-                    <option>50–150</option>
-                    <option>150–500</option>
-                    <option>500–1,000</option>
+                    <option>50 to 150</option>
+                    <option>150 to 500</option>
+                    <option>500 to 1,000</option>
                     <option>1,000+</option>
                   </select>
                 </div>
@@ -123,10 +139,24 @@ const inquiryTypes = [
                 </div>
               </div>
               <div class="form-field">
-                <label for="event_budget">Speaking Budget <span class="form-optional">(optional)</span></label>
-                <input type="text" id="event_budget" name="event_budget">
+                <label for="event_theme">Theme <span class="form-optional">(optional)</span></label>
+                <input type="text" id="event_theme" name="event_theme">
               </div>
-              <Placeholder label="Fields to confirm">These event fields are a starting point. They'll be updated from Kacey's event requirements document.</Placeholder>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="event_budget">Budgeted Honorarium</label>
+                  <input type="text" id="event_budget" name="event_budget" placeholder="e.g. $1,500 plus travel" required>
+                </div>
+                <div class="form-field">
+                  <label for="times_hosted">How many times has your organization hosted this type of event?</label>
+                  <select id="times_hosted" name="times_hosted" required>
+                    <option value="">Select…</option>
+                    <option>This is our first time</option>
+                    <option>2 to 5 times</option>
+                    <option>6 or more times</option>
+                  </select>
+                </div>
+              </div>
             </fieldset>
 
             <!-- RELATIONSHIP -->
@@ -185,6 +215,8 @@ const inquiryTypes = [
   const subject = form.querySelector<HTMLInputElement>('input[name="_subject"]')!;
   const messageLabel = document.getElementById('message-label')!;
   const message = document.getElementById('message') as HTMLTextAreaElement;
+  const phone = document.getElementById('phone') as HTMLInputElement;
+  const phoneOptional = document.getElementById('phone-optional')!;
 
   // Show only the fields for the chosen inquiry type. Hidden sections are disabled,
   // so their fields are neither required nor sent.
@@ -195,11 +227,14 @@ const inquiryTypes = [
       s.disabled = !active;
     });
     const isSpeaking = type === 'speaking';
-    messageLabel.textContent = isSpeaking ? 'Anything else about your event?' : 'Tell Me a Little About Where You Are';
+    messageLabel.textContent = isSpeaking ? 'Do you have any questions for Dr. Tammy? (optional)' : 'Tell Me a Little About Where You Are';
     message.placeholder = isSpeaking
-      ? 'Theme, goals for the event, or what you hope people walk away with.'
+      ? 'Goals for the event, or what you hope people walk away with.'
       : "You don't have to have the words exactly right. Just start where you are.";
     message.required = !isSpeaking;
+    // Event hosts must leave a phone number; for everyone else it's optional.
+    phone.required = isSpeaking;
+    phoneOptional.hidden = isSpeaking;
     const chosen = form.querySelector<HTMLInputElement>(`input[data-type="${type}"]`);
     const kind = type === 'unsure' || !chosen ? 'general' : chosen.value.toLowerCase();
     subject.value = `New ${kind} inquiry from the Dr. Tammy Young website`;
@@ -242,6 +277,7 @@ const inquiryTypes = [
       if (!res.ok) throw new Error('Request failed: ' + res.status);
       form.reset();
       sections.forEach((s) => { s.hidden = true; s.disabled = true; });
+      phone.required = false; phoneOptional.hidden = false;
       btn.textContent = 'Message Sent';
       showStatus('success', "Thank you. Your message has been received, and Dr. Tammy's team will be in touch within 48 hours (Monday through Friday).");
     } catch {

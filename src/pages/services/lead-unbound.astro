@@ -2,9 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Faq from '../../components/Faq.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { SHOW_DRAFTS } from '../../data/site';
 import { leadUnboundFaqs } from '../../data/faqs';
 ---
 <Base title="Lead Unbound" description="Lead Unbound: coaching for leaders who want to lead from wholeness, freedom, and God-given purpose, with Dr. Tammy Young.">
@@ -37,8 +35,6 @@ import { leadUnboundFaqs } from '../../data/faqs';
     </div>
   </section>
 
-  {/* Stage descriptions still needed: shown only on the in-progress branch */}
-  {SHOW_DRAFTS && (
   <section class="section white">
     <div class="section-inner">
       <div class="section-intro">
@@ -46,13 +42,12 @@ import { leadUnboundFaqs } from '../../data/faqs';
         <h2 class="section-heading small">From the inside out</h2>
       </div>
       <div class="stage-grid">
-        <div class="stage gold"><p class="stage-num">Stage One</p><h3>Discover</h3><Placeholder>What happens in Discover.</Placeholder></div>
-        <div class="stage gold"><p class="stage-num">Stage Two</p><h3>Develop</h3><Placeholder>What happens in Develop.</Placeholder></div>
-        <div class="stage gold"><p class="stage-num">Stage Three</p><h3>Multiply</h3><Placeholder>What happens in Multiply.</Placeholder></div>
+        <div class="stage gold"><p class="stage-num">Stage One</p><h3>Discover</h3><p>Uncover the beliefs and mindsets that keep you in patterns that aren't giving you the results you want, including the story you believe about yourself and others.</p></div>
+        <div class="stage gold"><p class="stage-num">Stage Two</p><h3>Develop</h3><p>Build a plan to take apart limiting beliefs and open the door to possibilities you may never have seen before.</p></div>
+        <div class="stage gold"><p class="stage-num">Stage Three</p><h3>Multiply</h3><p>Turn that new awareness into fresh ideas and healthy growth for your organization or ministry.</p></div>
       </div>
     </div>
   </section>
-  )}
 
   <section class="section sage tight">
     <div class="section-inner narrow text-center">

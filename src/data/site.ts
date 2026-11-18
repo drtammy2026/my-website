@@ -14,7 +14,7 @@ export const SHOW_DRAFTS = false;
 // Service pages that are finished and included on this branch.
 // When a page is ready, add its file to the live branch and flip it to true.
 export const PAGE_READY = {
-  relationship: SHOW_DRAFTS,
+  relationship: true,
   family: SHOW_DRAFTS,
   speaking: SHOW_DRAFTS,
 };

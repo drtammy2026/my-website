@@ -5,6 +5,7 @@ export interface Resource {
   location: string;
   url?: string;
   blurb?: string;
+  linkLabel?: string; // defaults to "Visit Website"
   needs?: string; // what is still missing, shown as a placeholder
 }
 
@@ -23,12 +24,14 @@ export const resourceGroups: ResourceGroup[] = [
         name: 'Church of Hope',
         location: 'Sarasota, FL',
         url: 'https://churchofhope.com',
-        blurb: 'A welcoming church family with a strong youth ministry, small groups where you can be known, a vibrant creative arts community, and heartfelt worship.',
+        blurb: "Dr. Tammy's home church. She has served in leadership here since 1999, led the women's ministry for 23 years, and leads the Classic Service with her husband, Peter. A welcoming church family with a strong youth ministry, small groups where you can be known, a vibrant creative arts community, and heartfelt worship.",
       },
       {
         name: 'Community Compassion Center',
         location: 'Sarasota, FL',
-        needs: 'Website link and a sentence on what they offer and why Dr. Tammy recommends them.',
+        url: 'https://churchofhope.com',
+        linkLabel: 'Visit Church of Hope',
+        blurb: "An outreach ministry of Church of Hope, part of its Kingdom Builders program. It doesn't have its own website, so reach out through Church of Hope to learn more.",
       },
     ],
   },
@@ -49,10 +52,10 @@ export const resourceGroups: ResourceGroup[] = [
     sub: 'Community and mentoring for women called to lead.',
     items: [
       {
-        name: 'Trailblazers Mentoring Network',
+        name: 'Trailblazer Mentoring Network',
         location: 'Led by Dr. Jamie Morgan',
-        blurb: 'A mentoring network for women in ministry.',
-        needs: 'Website link and a sentence on why Dr. Tammy recommends it.',
+        url: 'https://trailblazermentoring.com',
+        blurb: 'Dr. Tammy calls it a greenhouse: a place where women called to ministry can grow in their relationship with God and in the ministry they lead.',
       },
     ],
   },
