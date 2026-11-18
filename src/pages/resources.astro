@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { resourceGroups } from '../data/resources';
+import { SHOW_DRAFTS } from '../data/site';
+
+// On the live branch, only show resources that are complete (no missing link or description).
+const groups = resourceGroups
+  .map((g) => ({ ...g, items: g.items.filter((r) => SHOW_DRAFTS || !r.needs) }))
+  .filter((g) => g.items.length);
+---
+<Base title="Resources" description="Churches, organizations, and communities Dr. Tammy Young recommends in Sarasota and across Florida.">
+  <PageHeader eyebrow="Resources">
+    <h1>Recommended <em>Resources</em></h1>
+    <p class="lede">Churches, organizations, and networks Dr. Tammy recommends, most of them here in Sarasota.</p>
+  </PageHeader>
+
+  <section class="section white">
+    <div class="section-inner">
+      {groups.map((group) => (
+        <div class="resource-group">
+          <h2 class="resource-group-title">{group.title}</h2>
+          <p class="resource-group-sub">{group.sub}</p>
+          <div class="resource-grid">
+            {group.items.map((r) => (
+              <div class="resource-card">
+                <p class="resource-meta">{r.location}</p>
+                <h3 class="resource-name">{r.name}</h3>
+                {r.blurb && <p class="resource-desc">{r.blurb}</p>}
+                {r.needs && <div style="margin-bottom:1.2rem"><Placeholder>{r.needs}</Placeholder></div>}
+                {r.url && (
+                  <a class="resource-link" href={r.url} target="_blank" rel="noopener">
+                    Visit Website <span aria-hidden="true">↗</span><span class="form-hp"> (opens in a new tab)</span>
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+      <p class="disclaimer">These are independent organizations. Dr. Tammy shares them because she believes in their work; One Heart One Hope Coaching is not affiliated with or responsible for their services.</p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Looking for something <em>more personal?</em>"
+    text="If you'd like someone to walk with you one-on-one, we'd love to hear from you."
+    label="Start the Conversation"
+  />
+</Base>

@@ -1,0 +1,135 @@
+---
+import '../styles/global.css';
+import { PAGE_READY } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Dr. Tammy Young, D.Min., PCC, offers Biblically based coaching for personal healing, leadership, relationships, and foster and adoptive families, plus speaking and training. Sarasota, FL.',
+} = Astro.props;
+
+const fullTitle = title ? `${title} | Dr. Tammy Young` : 'Dr. Tammy Young | Lead With Wholeness';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+const ogImage = new URL('/images/hero.jpg', Astro.site).href;
+// Phones get an always-visible contact button, except on the contact page itself.
+const showMobileCta = !isCurrent('/contact');
+
+const navItems = [
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  ...(PAGE_READY.speaking ? [{ href: '/speaking', label: 'Speaking' }] : []),
+  { href: '/resources', label: 'Resources' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImage}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F7F4EE">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body class:list={{ 'has-mobile-cta': showMobileCta }}>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Main">
+    <a class="nav-logo" href="/"><img src="/images/logo.png" alt="" width="320" height="320"><span class="nav-logo-text">Dr. Tammy <span>Young</span></span></a>
+    <ul class="nav-links" id="nav-links">
+      {navItems.map((item) => (
+        <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+      ))}
+      <li class="nav-menu-cta"><a href="/contact">Begin Your Journey</a></li>
+    </ul>
+    <a class="nav-cta" href="/contact">Begin Your Journey</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-toggle-icon" aria-hidden="true"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+  </nav>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  {showMobileCta && (
+    <div class="mobile-cta"><a href="/contact">Contact Dr. Tammy <span aria-hidden="true">→</span></a></div>
+  )}
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img class="footer-mark" src="/images/logo.png" alt="" width="320" height="320" loading="lazy">Dr. Tammy Young</div>
+    <p class="footer-org">One Heart One Hope Coaching</p>
+    <p class="footer-framework">Lead With Wholeness</p>
+    <p class="footer-insured">One Heart One Hope Coaching LLC carries professional liability insurance.</p>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      {navItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+    </ul>
+    <p class="footer-copy">&copy; {new Date().getFullYear()} Dr. Tammy Young · One Heart One Hope Coaching. All rights reserved. Lead With Wholeness™ is a trademark of Dr. Tammy Young.</p>
+  </footer>
+
+  <script>
+    // ----- Mobile menu -----
+    const nav = document.querySelector('.site-nav') as HTMLElement;
+    const navToggle = nav.querySelector('.nav-toggle') as HTMLButtonElement;
+    const navToggleLabel = navToggle.querySelector('.nav-toggle-label') as HTMLElement;
+    function setMenu(open: boolean) {
+      nav.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggleLabel.textContent = open ? 'Close' : 'Menu';
+    }
+    navToggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    nav.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); navToggle.focus(); }
+    });
+
+    // ----- FAQ accordions (any page) -----
+    function toggleFaq(btn: HTMLElement) {
+      const isOpen = btn.classList.contains('open');
+      const list = btn.closest('.faq-list') ?? document;
+      list.querySelectorAll<HTMLElement>('.faq-q').forEach((b) => {
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling?.classList.remove('open');
+      });
+      if (!isOpen) {
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling?.classList.add('open');
+      }
+    }
+    document.querySelectorAll<HTMLElement>('.faq-q').forEach((btn) => btn.addEventListener('click', () => toggleFaq(btn)));
+
+    // Links that point at a specific FAQ item (e.g. /faq#faq-confidentiality) open it
+    function openFaqItem(id: string) {
+      const btn = document.getElementById(id)?.querySelector<HTMLElement>('.faq-q');
+      if (btn && !btn.classList.contains('open')) toggleFaq(btn);
+    }
+    document.querySelectorAll<HTMLAnchorElement>('a[href*="#faq-"]').forEach((a) => {
+      a.addEventListener('click', () => {
+        const url = new URL(a.href);
+        if (url.pathname === location.pathname) openFaqItem(url.hash.slice(1));
+      });
+    });
+    if (location.hash.startsWith('#faq-')) openFaqItem(location.hash.slice(1));
+  </script>
+</body>
+</html>

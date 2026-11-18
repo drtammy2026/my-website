@@ -1,0 +1,30 @@
+---
+interface Props {
+  heading: string;
+  text?: string;
+  href?: string;
+  label?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  gold?: boolean;
+}
+const {
+  heading,
+  text,
+  href = '/contact',
+  label = 'Start the Conversation',
+  secondaryHref,
+  secondaryLabel,
+  gold = false,
+} = Astro.props;
+---
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2 class="section-heading small" set:html={heading} />
+    {text && <p>{text}</p>}
+    <div class="actions center">
+      <a class={gold ? 'btn-gold' : 'btn-primary'} href={href}>{label} <span class="btn-arrow" aria-hidden="true">→</span></a>
+      {secondaryHref && <a class="btn-ghost" href={secondaryHref}>{secondaryLabel}</a>}
+    </div>
+  </div>
+</section>

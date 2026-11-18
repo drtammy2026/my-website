@@ -1,0 +1,41 @@
+---
+// What happens after someone reaches out: a simple numbered timeline.
+const steps = [
+  {
+    title: 'You Reach Out',
+    text: "Fill out the contact form and tell me a little about where you are. You don't have to have the right words. Just start where you are. That's enough.",
+  },
+  {
+    title: 'We Connect',
+    text: "Within 48 hours, my team will reach out to schedule your complimentary discovery call. This is a relaxed, no-pressure conversation, a chance for us to get acquainted and for me to understand where you are and what you're carrying.",
+  },
+  {
+    title: 'We Find Your Pathway',
+    text: "Together, we'll find the right starting place for you, whether that's personal healing, leadership, your relationship, or your family. There's no wrong answer, just the right next step for where you are right now.",
+  },
+  {
+    title: 'The Work Begins',
+    text: "We begin at the root. Every session is Spirit-led, confidential, and tailored to you. We go at a pace that honors where you are, and we don't stop until freedom is the result.",
+  },
+];
+---
+<section class="section white" id="what-to-expect">
+  <div class="section-inner expect">
+    <div class="expect-intro">
+      <p class="section-eyebrow">What To Expect</p>
+      <h2 class="section-heading">You don't have to figure out <em>the next step alone.</em></h2>
+      <p>Here's exactly what happens when you reach out. No surprises. No pressure. Just a clear, safe path forward.</p>
+    </div>
+    <ol class="timeline">
+      {steps.map((s, i) => (
+        <li>
+          <span class="timeline-num" aria-hidden="true">{i + 1}</span>
+          <div>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Faq from '../../components/Faq.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SHOW_DRAFTS } from '../../data/site';
+import { restoreWithinFaqs } from '../../data/faqs';
+---
+<Base title="Restore Within" description="Restore Within: Spirit-led coaching for personal healing with Dr. Tammy Young. Healing what has been wounded, restoring what has been lost.">
+  <PageHeader eyebrow="Personal Healing">
+    <h1>Restore <em>Within</em></h1>
+    <p class="lede">Healing what has been wounded. Restoring what has been lost.</p>
+    <p class="tagline">You can move forward without pretending the past didn't happen.</p>
+  </PageHeader>
+
+  <section class="section white">
+    <div class="section-inner narrow">
+      <p class="section-eyebrow">Who It's For</p>
+      <h2 class="section-heading small">Restore Within may help if…</h2>
+      <ul class="fit-list">
+        <li>You've done all the right things and still feel the weight of something unresolved underneath.</li>
+        <li>You keep circling the same cycles of anxiety, anger, fear, or addiction.</li>
+        <li>Old wounds still shape how you see yourself, your relationships, or your future.</li>
+        <li>You're ready to stop managing symptoms and get to the root.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section sage">
+    <div class="section-inner narrow">
+      <div class="prose">
+        <p class="section-eyebrow">What It Looks Like</p>
+        <h2 class="section-heading small">A safe place to get <em>honest</em></h2>
+        <p>Restore Within is a safe, Spirit-led space to look honestly at the experiences, wounds, beliefs, and patterns that may still be affecting the way you see yourself, your relationships, your decisions, and your future.</p>
+        <p>You are not trying to become someone else. You're becoming freer to live as the person God created you to be.</p>
+        <p class="serif-note">No guilt. No shame. No blame.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Stage descriptions still needed: shown only on the in-progress branch */}
+  {SHOW_DRAFTS && (
+  <section class="section white">
+    <div class="section-inner">
+      <div class="section-intro">
+        <p class="section-eyebrow">The Path</p>
+        <h2 class="section-heading small">One step at a time</h2>
+      </div>
+      <div class="stage-grid">
+        <div class="stage"><p class="stage-num">Stage One</p><h3>Begin</h3><Placeholder>What happens in Begin: length, focus, what clients experience.</Placeholder></div>
+        <div class="stage"><p class="stage-num">Stage Two</p><h3>Journey</h3><Placeholder>What happens in Journey.</Placeholder></div>
+        <div class="stage"><p class="stage-num">Stage Three</p><h3>Deepen</h3><Placeholder>What happens in Deepen.</Placeholder></div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <section class="section cream">
+    <div class="section-inner">
+      <div class="section-intro">
+        <p class="section-eyebrow">Questions</p>
+        <h2 class="section-heading small">About Restore Within</h2>
+      </div>
+      <Faq items={restoreWithinFaqs} idPrefix="restore" />
+      <p class="faq-more">Questions about therapy, faith, sessions, or confidentiality? See the <a href="/faq">general FAQ</a>.</p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Ready to <em>begin?</em>"
+    text="Reach out for a complimentary discovery call. No pressure, just a conversation about where you are."
+    href="/contact?type=restore"
+    label="Start with Restore Within"
+  />
+</Base>

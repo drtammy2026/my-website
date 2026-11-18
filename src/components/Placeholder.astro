@@ -1,0 +1,17 @@
+---
+// Visible marker for content still needed from Dr. Tammy.
+// Renders nothing on the live branch (SHOW_DRAFTS = false in src/data/site.ts).
+// Search the project for "<Placeholder" to find everything left to fill in.
+import { SHOW_DRAFTS } from '../data/site';
+interface Props {
+  label?: string;
+  block?: boolean;
+}
+const { label = 'Content needed', block = false } = Astro.props;
+---
+{SHOW_DRAFTS && (
+  <div class:list={['placeholder', { block }]}>
+    <span class="placeholder-label">{label}</span>
+    <slot />
+  </div>
+)}
