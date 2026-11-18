@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { PAGE_READY, serviceHref } from '../../data/site';
+---
+<Base title="Services" description="Coaching for personal healing, leadership, relationships, and foster and adoptive families, plus speaking and training, with Dr. Tammy Young.">
+  <PageHeader eyebrow="Services">
+    <h1>Coaching &amp; <em>Speaking</em></h1>
+    <p class="lede">Biblically based coaching for individuals, leaders, couples, and foster and adoptive families, plus speaking and training for churches and events.</p>
+  </PageHeader>
+
+  <section class="section white">
+    <div class="section-inner">
+      <div class="service-grid">
+        <div class="service-card restore">
+          <span class="service-label">Personal Healing</span>
+          <h2 class="service-name">Restore Within</h2>
+          <p class="service-body">One-on-one, Spirit-led coaching that gets to the root of trauma, old wounds, and the patterns they leave behind.</p>
+          <div class="stages"><p class="stages-label">The path</p><ol aria-label="Restore Within stages"><li>Begin</li><li>Journey</li><li>Deepen</li></ol></div>
+          <div class="actions"><a class="btn-primary" href="/services/restore-within">Explore Restore Within <span class="btn-arrow" aria-hidden="true">→</span></a></div>
+        </div>
+
+        <div class="service-card lead">
+          <span class="service-label">Leadership</span>
+          <h2 class="service-name">Lead Unbound</h2>
+          <p class="service-body">Coaching for pastors and leaders who want to lead from wholeness instead of exhaustion.</p>
+          <div class="stages gold"><p class="stages-label">The path</p><ol aria-label="Lead Unbound stages"><li>Discover</li><li>Develop</li><li>Multiply</li></ol></div>
+          <div class="actions"><a class="btn-gold" href="/services/lead-unbound">Explore Lead Unbound <span class="btn-arrow" aria-hidden="true">→</span></a></div>
+        </div>
+
+        <div class="service-card">
+          <span class="service-label">Couples &amp; Relationships</span>
+          <h2 class="service-name">Relationship Coaching</h2>
+          <p class="service-body">Coaching for couples, or for one partner on their own, to strengthen the relationships that matter most.</p>
+          <div class="actions"><a class="btn-primary" href={serviceHref('relationship', '/services/relationship-coaching', 'relationship')}>{PAGE_READY.relationship ? 'Explore Relationship Coaching' : 'Ask About Relationship Coaching'} <span class="btn-arrow" aria-hidden="true">→</span></a></div>
+        </div>
+
+        <div class="service-card">
+          <span class="service-label">Families</span>
+          <h2 class="service-name">Foster and Adoptive Families</h2>
+          <p class="service-body">Coaching for foster and adoptive parents and children through the joys and challenges of becoming a family.</p>
+          <div class="actions"><a class="btn-primary" href={serviceHref('family', '/services/foster-adoptive-families', 'family')}>{PAGE_READY.family ? 'Explore Family Coaching' : 'Ask About Family Coaching'} <span class="btn-arrow" aria-hidden="true">→</span></a></div>
+        </div>
+
+        <div class="service-card wide gold-text">
+          <span class="service-label">For Churches, Conferences &amp; Teams</span>
+          <h2 class="service-name">Speaking &amp; Training</h2>
+          <p class="service-body">Keynotes, workshops, and trainings on healing, identity, and healthy leadership.</p>
+          <div class="actions"><a class="btn-gold" href={serviceHref('speaking', '/speaking', 'speaking')}>{PAGE_READY.speaking ? 'Explore Speaking' : 'Invite Dr. Tammy to Speak'} <span class="btn-arrow" aria-hidden="true">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bridge">
+    <div class="bridge-inner">
+      <h2 class="bridge-heading">Sometimes we need to <em>Restore Within</em><br>before we can <em>Lead Unbound.</em></h2>
+      <p class="bridge-body">Sometimes leadership itself reveals places within us that still need God's healing. And sometimes the journeys happen together. That's the heart behind Lead With Wholeness: helping people heal what has been wounded, become more fully who God created them to be, and move forward with freedom and purpose.</p>
+      <p class="bridge-tagline">Restore Within → Wholeness → Lead Unbound</p>
+    </div>
+  </div>
+
+  <CtaBand
+    heading="Not sure which is right for you?"
+    text="That's what the discovery call is for. Tell us a little about where you are, and we'll help you find the right starting place."
+    href="/contact?type=unsure"
+    label="Help Me Choose"
+  />
+</Base>

@@ -1,0 +1,38 @@
+---
+// Accordion list of questions. Answers are arrays of paragraphs (HTML allowed).
+// Set `placeholder: true` on an item whose answer still needs Dr. Tammy's input.
+export interface FaqItem {
+  id?: string;
+  q: string;
+  a: string[];
+  placeholder?: boolean;
+}
+interface Props {
+  items: FaqItem[];
+  idPrefix: string;
+}
+import { SHOW_DRAFTS } from '../data/site';
+// Questions still waiting on an answer are hidden on the live branch.
+const items = Astro.props.items.filter((item) => SHOW_DRAFTS || !item.placeholder);
+const { idPrefix } = Astro.props;
+---
+<div class="faq-list">
+  {items.map((item, i) => {
+    const answerId = `${idPrefix}-a-${i + 1}`;
+    return (
+      <div class="faq-item" id={item.id}>
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls={answerId}>
+          {item.q}
+          <span class="faq-arrow" aria-hidden="true">↓</span>
+        </button>
+        <div class="faq-a" id={answerId}>
+          {item.placeholder ? (
+            <div class="placeholder"><span class="placeholder-label">Answer needed</span>{item.a.map((p) => <span set:html={p} />)}</div>
+          ) : (
+            item.a.map((p) => <p set:html={p} />)
+          )}
+        </div>
+      </div>
+    );
+  })}
+</div>

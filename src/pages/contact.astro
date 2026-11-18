@@ -1,0 +1,252 @@
+---
+import Base from '../layouts/Base.astro';
+import Placeholder from '../components/Placeholder.astro';
+
+// Replace YOUR_FORM_ID with the ID from Formspree (formspree.io → your form → Integration).
+const FORMSPREE_ACTION = 'https://formspree.io/f/YOUR_FORM_ID';
+
+const inquiryTypes = [
+  { value: 'restore', label: 'Personal healing', hint: 'Restore Within' },
+  { value: 'lead', label: 'Leadership', hint: 'Lead Unbound' },
+  { value: 'relationship', label: 'Relationship coaching', hint: 'For couples or individuals' },
+  { value: 'family', label: 'Foster and adoptive family coaching', hint: 'For parents and children' },
+  { value: 'speaking', label: 'Speaking or training', hint: 'For your church or event' },
+  { value: 'unsure', label: "I'm not sure yet", hint: "We'll help you find the right fit" },
+];
+---
+<Base title="Contact" description="Reach out to Dr. Tammy Young for coaching or speaking. Her team responds within 48 hours, Monday through Friday.">
+  <section class="section white">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <img class="contact-photo" src="/images/contact.jpg" width="900" height="1350" alt="Dr. Tammy Young smiling outdoors">
+          <p class="section-eyebrow">Get in Touch</p>
+          <h1 class="section-heading small">Ready to find <em>the root</em>?</h1>
+          <p>You've carried this long enough. If you're tired of circling and ready to surrender the broken places, this is where we start.</p>
+          <p>Fill out the form and Dr. Tammy's team will be in touch within 48 hours. Every message is held with care and complete confidentiality.</p>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Confidentiality</span>
+            <span class="contact-detail-val">Everything you share is held in sacred confidence.</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Response Time</span>
+            <span class="contact-detail-val">Within 48 hours, Monday through Friday.</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Next Step</span>
+            <span class="contact-detail-val">A brief complimentary discovery call to see how Dr. Tammy can best serve you.</span>
+          </div>
+        </div>
+
+        <div>
+          <form class="contact-form" id="contact-form" action={FORMSPREE_ACTION} method="POST">
+            <input type="hidden" name="_subject" value="New inquiry from the Dr. Tammy Young website">
+            <div class="form-hp" aria-hidden="true">
+              <label for="company-hp">Leave this field empty</label>
+              <input type="text" id="company-hp" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
+
+            <fieldset>
+              <legend class="form-legend">How can we help?</legend>
+              <div class="choice-grid">
+                {inquiryTypes.map((t) => (
+                  <label class="choice">
+                    <input type="radio" name="inquiry_type" value={t.label} data-type={t.value} required>
+                    <span>{t.label}<small>{t.hint}</small></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="First and last name" required>
+              </div>
+              <div class="form-field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone <span class="form-optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+
+            <!-- SPEAKING -->
+            <fieldset class="form-section" data-section="speaking" hidden>
+              <p class="form-section-title">About your event</p>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="organization">Organization or Church</label>
+                  <input type="text" id="organization" name="organization" required>
+                </div>
+                <div class="form-field">
+                  <label for="event_name">Event Name <span class="form-optional">(optional)</span></label>
+                  <input type="text" id="event_name" name="event_name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="event_date">Event Date(s)</label>
+                  <input type="text" id="event_date" name="event_date" placeholder="e.g. March 14–15, 2027" required>
+                </div>
+                <div class="form-field">
+                  <label for="event_format">Format</label>
+                  <select id="event_format" name="event_format" required>
+                    <option value="">Select…</option>
+                    <option>In person</option>
+                    <option>Virtual</option>
+                    <option>Hybrid</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="event_location">Where is it?</label>
+                <input type="text" id="event_location" name="event_location" placeholder="Venue, city, state or country" required>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="audience_size">How many people?</label>
+                  <select id="audience_size" name="audience_size" required>
+                    <option value="">Select…</option>
+                    <option>Under 50</option>
+                    <option>50–150</option>
+                    <option>150–500</option>
+                    <option>500–1,000</option>
+                    <option>1,000+</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="audience_type">Who's the audience? <span class="form-optional">(optional)</span></label>
+                  <input type="text" id="audience_type" name="audience_type" placeholder="e.g. pastors, women's ministry">
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="event_budget">Speaking Budget <span class="form-optional">(optional)</span></label>
+                <input type="text" id="event_budget" name="event_budget">
+              </div>
+              <Placeholder label="Fields to confirm">These event fields are a starting point. They'll be updated from Kacey's event requirements document.</Placeholder>
+            </fieldset>
+
+            <!-- RELATIONSHIP -->
+            <fieldset class="form-section" data-section="relationship" hidden>
+              <p class="form-section-title">About your relationship</p>
+              <div class="form-field">
+                <label for="relationship_coming_as">Are you reaching out…</label>
+                <select id="relationship_coming_as" name="relationship_coming_as">
+                  <option value="">Select…</option>
+                  <option>Just for me</option>
+                  <option>For both of us</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <!-- FOSTER AND ADOPTIVE FAMILIES -->
+            <fieldset class="form-section" data-section="family" hidden>
+              <p class="form-section-title">About your family</p>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="family_role">Your Role</label>
+                  <select id="family_role" name="family_role">
+                    <option value="">Select…</option>
+                    <option>Adoptive parent</option>
+                    <option>Foster parent</option>
+                    <option>Kinship caregiver or guardian</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="child_ages">Child's Age(s) <span class="form-optional">(optional)</span></label>
+                  <input type="text" id="child_ages" name="child_ages" placeholder="e.g. 7 and 10">
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="form-field">
+              <label for="message" id="message-label">Tell Me a Little About Where You Are</label>
+              <textarea id="message" name="message" placeholder="You don't have to have the words exactly right. Just start where you are." required></textarea>
+            </div>
+            <p class="form-note">Share as much or as little as you'd like. We'll go deeper on our call. Your message is kept confidential (<a href="/faq#faq-confidentiality">see how confidentiality works</a>).</p>
+            <button type="submit" class="form-submit">Send My Message</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const radios = form.querySelectorAll<HTMLInputElement>('input[name="inquiry_type"]');
+  const sections = form.querySelectorAll<HTMLFieldSetElement>('.form-section');
+  const subject = form.querySelector<HTMLInputElement>('input[name="_subject"]')!;
+  const messageLabel = document.getElementById('message-label')!;
+  const message = document.getElementById('message') as HTMLTextAreaElement;
+
+  // Show only the fields for the chosen inquiry type. Hidden sections are disabled,
+  // so their fields are neither required nor sent.
+  function showSection(type: string) {
+    sections.forEach((s) => {
+      const active = s.dataset.section === type;
+      s.hidden = !active;
+      s.disabled = !active;
+    });
+    const isSpeaking = type === 'speaking';
+    messageLabel.textContent = isSpeaking ? 'Anything else about your event?' : 'Tell Me a Little About Where You Are';
+    message.placeholder = isSpeaking
+      ? 'Theme, goals for the event, or what you hope people walk away with.'
+      : "You don't have to have the words exactly right. Just start where you are.";
+    message.required = !isSpeaking;
+    const chosen = form.querySelector<HTMLInputElement>(`input[data-type="${type}"]`);
+    subject.value = `New ${chosen ? chosen.value.toLowerCase() : ''} inquiry from the Dr. Tammy Young website`;
+  }
+  sections.forEach((s) => (s.disabled = true));
+  radios.forEach((r) => r.addEventListener('change', () => showSection(r.dataset.type!)));
+
+  // Pre-select from the link that brought them here, e.g. /contact?type=speaking
+  const preset = new URLSearchParams(location.search).get('type');
+  const presetRadio = preset ? form.querySelector<HTMLInputElement>(`input[data-type="${preset}"]`) : null;
+  if (presetRadio) { presetRadio.checked = true; showSection(preset!); }
+
+  // ----- Submit to Formspree -----
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector<HTMLButtonElement>('.form-submit')!;
+    const status = form.querySelector<HTMLElement>('.form-status')!;
+    const showStatus = (type: string, msg: string) => { status.className = 'form-status ' + type; status.textContent = msg; };
+
+    // Fallback: email Dr. Tammy directly. The address is assembled here, only after a
+    // send attempt, so it never appears as plain text in the page for spam bots to collect.
+    const showEmailFallback = (lead: string) => {
+      const address = ['coach', 'drtammyyoung.com'].join('@');
+      status.className = 'form-status error';
+      status.textContent = lead + ' Please email Dr. Tammy directly at ';
+      const link = document.createElement('a');
+      link.href = 'mailto:' + address + '?subject=' + encodeURIComponent('Website inquiry');
+      link.textContent = address;
+      status.append(link, '.');
+    };
+
+    if (form.action.includes('YOUR_FORM_ID')) {
+      showEmailFallback("Sorry, our online form isn't working yet, and your message was not sent.");
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('Request failed: ' + res.status);
+      form.reset();
+      sections.forEach((s) => { s.hidden = true; s.disabled = true; });
+      btn.textContent = 'Message Sent';
+      showStatus('success', "Thank you. Your message has been received, and Dr. Tammy's team will be in touch within 48 hours (Monday through Friday).");
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send My Message';
+      showEmailFallback("Sorry, something went wrong and your message wasn't sent.");
+    }
+  });
+</script>

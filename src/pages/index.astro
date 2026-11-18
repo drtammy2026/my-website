@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import WhatToExpect from '../components/WhatToExpect.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { PAGE_READY, serviceHref } from '../data/site';
+
+// How Dr. Tammy helps: plain label first, one line on who it's for, then where it leads.
+// Services without a finished page go straight to the contact form, pre-set to that service.
+const helpAreas = [
+  { title: 'Personal & Trauma Healing', desc: 'For healing old wounds, trauma, and patterns you haven’t been able to break.', link: 'Restore Within', href: '/services/restore-within' },
+  { title: 'Leadership', desc: 'For pastors and leaders who are worn out and want to lead from a healthier place.', link: 'Lead Unbound', href: '/services/lead-unbound', gold: true },
+  { title: 'Relationships', desc: 'For couples and individuals who want healthier, more hopeful relationships.', link: PAGE_READY.relationship ? 'Relationship Coaching' : 'Get in Touch', href: serviceHref('relationship', '/services/relationship-coaching', 'relationship') },
+  { title: 'Foster and Adoptive Families', desc: 'For foster and adoptive parents and children growing together as a family.', link: PAGE_READY.family ? 'Family Coaching' : 'Get in Touch', href: serviceHref('family', '/services/foster-adoptive-families', 'family') },
+  { title: 'Speaking & Training', desc: 'For churches, conferences, and ministry teams.', link: PAGE_READY.speaking ? 'Book Dr. Tammy' : 'Invite Dr. Tammy', href: serviceHref('speaking', '/speaking', 'speaking'), gold: true },
+];
+---
+<Base>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">One Heart One Hope Coaching &nbsp;·&nbsp; Sarasota, FL</p>
+        <h1 class="hero-quote">You Were Created<br>for <em>Wholeness.</em></h1>
+        <p class="hero-sub">You don't have to stay stuck in what happened to you. And you don't have to keep pushing forward while carrying wounds, patterns, expectations, and experiences that were never meant to define you.</p>
+        <p class="hero-tagline">Heal within. Live free. Lead whole.</p>
+        <div class="actions">
+          <a class="btn-primary" href="#help">See How We Help</a>
+          <a class="btn-ghost" href="/about">Meet Dr. Tammy</a>
+        </div>
+      </div>
+      <div>
+        <img class="hero-photo" src="/images/hero.jpg" alt="Dr. Tammy Young" width="1400" height="933" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW DR. TAMMY HELPS -->
+  <section class="section sage" id="help">
+    <div class="section-inner">
+      <div class="section-intro">
+        <p class="section-eyebrow">How Dr. Tammy Helps</p>
+        <h2 class="section-heading">Coaching and speaking, <em>rooted in Biblical truth</em></h2>
+      </div>
+      <ul class="help-list">
+        {helpAreas.map((h) => (
+          <li>
+            <a class:list={['help-row', { gold: h.gold }]} href={h.href}>
+              <span class="help-title">{h.title}</span>
+              <span class="help-desc">{h.desc}</span>
+              <span class="help-link">{h.link} <span class="btn-arrow" aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="help-unsure">Not sure what you need? <a href="/contact?type=unsure">Reach out</a> and we'll talk it through on a complimentary discovery call.</p>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="truth-strip">
+    <blockquote>"What you think of yourself may not be the truth. It may be a lie you have believed, and that lie has a root. Let's find it together."</blockquote>
+    <cite>Dr. Tammy Young</cite>
+  </div>
+
+  <!-- MEET DR. TAMMY (short intro; her full story lives on About) -->
+  <section class="section white">
+    <div class="section-inner split">
+      <img class="split-img" src="/images/about-portrait.jpg" width="900" height="600" loading="lazy" alt="Dr. Tammy Young seated with a warm cup of coffee, smiling">
+      <div class="prose">
+        <p class="section-eyebrow">Meet Dr. Tammy</p>
+        <h2 class="section-heading small">Coach, minister, and <em>founder</em></h2>
+        <p>Dr. Tammy Young is a Doctor of Ministry, an ICF Professional Certified Coach, and the founder of <strong>One Heart One Hope Coaching</strong> in Sarasota, Florida. Her own healing journey is the foundation of her work, and she has coached people across five countries.</p>
+        <a class="btn-outline-sage" href="/about">Read Her Story <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <WhatToExpect />
+
+  <!-- TRUTH MARKERS -->
+  <div class="truth-markers">
+    <div class="truth-markers-inner">
+      <div class="truth-item"><p>Trauma does not define who you are. You are more than your trauma.</p></div>
+      <div class="truth-item"><p>God loves you and has a good plan for your life.</p></div>
+      <div class="truth-item"><p>God does not waste anything you walk through.</p></div>
+      <div class="truth-item"><p>You can trust God because He has always been with you.</p></div>
+    </div>
+  </div>
+
+  <CtaBand
+    heading="You don't have to have all the answers<br><em>before you begin.</em>"
+    text="Start with a complimentary discovery call. No pressure, just a conversation."
+    label="Begin the Conversation"
+    secondaryHref="/services"
+    secondaryLabel="Explore Services"
+  />
+</Base>

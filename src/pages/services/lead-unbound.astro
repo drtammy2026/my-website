@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Faq from '../../components/Faq.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SHOW_DRAFTS } from '../../data/site';
+import { leadUnboundFaqs } from '../../data/faqs';
+---
+<Base title="Lead Unbound" description="Lead Unbound: coaching for leaders who want to lead from wholeness, freedom, and God-given purpose, with Dr. Tammy Young.">
+  <PageHeader eyebrow="Leadership" gold>
+    <h1>Lead <em>Unbound</em></h1>
+    <p class="lede">Leading from wholeness, freedom, and God-given purpose.</p>
+    <p class="tagline">Healthy leadership begins on the inside.</p>
+  </PageHeader>
+
+  <section class="section white">
+    <div class="section-inner narrow">
+      <p class="section-eyebrow">Who It's For</p>
+      <h2 class="section-heading small">Lead Unbound is for you if…</h2>
+      <ul class="fit-list">
+        <li>You have the title, the responsibility, and the calling, and you're leading from exhaustion.</li>
+        <li>You feel the pressure to keep everyone else okay.</li>
+        <li>Reactivity or old patterns keep showing up in how you lead.</li>
+        <li>You know there has to be a healthier, more sustainable way.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section gold">
+    <div class="section-inner narrow prose">
+      <p class="section-eyebrow" style="color:var(--gold-deep)">What It Looks Like</p>
+      <h2 class="section-heading small">Who you're becoming <em>while you lead</em></h2>
+      <p>You can have the title, the responsibility, the calling, and still find yourself leading from exhaustion, old wounds, unhealthy expectations, fear, or the pressure to keep everyone else okay.</p>
+      <p>Lead Unbound is about becoming the kind of leader who knows who they are, understands what they carry, and learns to lead from a place of greater freedom, clarity, and wholeness.</p>
+      <p class="serif-note">Because leadership isn't simply about what you accomplish. It's about who you're becoming while you lead.</p>
+    </div>
+  </section>
+
+  {/* Stage descriptions still needed: shown only on the in-progress branch */}
+  {SHOW_DRAFTS && (
+  <section class="section white">
+    <div class="section-inner">
+      <div class="section-intro">
+        <p class="section-eyebrow" style="color:var(--gold-deep)">The Path</p>
+        <h2 class="section-heading small">From the inside out</h2>
+      </div>
+      <div class="stage-grid">
+        <div class="stage gold"><p class="stage-num">Stage One</p><h3>Discover</h3><Placeholder>What happens in Discover.</Placeholder></div>
+        <div class="stage gold"><p class="stage-num">Stage Two</p><h3>Develop</h3><Placeholder>What happens in Develop.</Placeholder></div>
+        <div class="stage gold"><p class="stage-num">Stage Three</p><h3>Multiply</h3><Placeholder>What happens in Multiply.</Placeholder></div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <section class="section sage tight">
+    <div class="section-inner narrow text-center">
+      <p class="serif-note">Leadership struggles often have a personal root. If something deeper keeps surfacing as you lead, Restore Within may be the place to start, or the two can happen side by side.</p>
+      <div class="actions center" style="margin-top:1.5rem"><a class="btn-outline-sage" href="/services/restore-within">About Restore Within <span class="btn-arrow" aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="section cream">
+    <div class="section-inner">
+      <div class="section-intro">
+        <p class="section-eyebrow" style="color:var(--gold-deep)">Questions</p>
+        <h2 class="section-heading small">About Lead Unbound</h2>
+      </div>
+      <Faq items={leadUnboundFaqs} idPrefix="lead" />
+      <p class="faq-more">Questions about therapy, faith, sessions, or confidentiality? See the <a href="/faq">general FAQ</a>.</p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Lead from a <em>healthier place</em>"
+    text="Reach out for a complimentary discovery call to talk about where you are as a leader."
+    href="/contact?type=lead"
+    label="Explore Lead Unbound"
+    gold
+  />
+</Base>

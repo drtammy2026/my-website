@@ -1,0 +1,13 @@
+---
+interface Props {
+  eyebrow?: string;
+  gold?: boolean;
+}
+const { eyebrow, gold = false } = Astro.props;
+---
+<header class:list={['page-header', { 'gold-accent': gold }]}>
+  <div class="page-header-inner">
+    {eyebrow && <p class="section-eyebrow">{eyebrow}</p>}
+    <slot />
+  </div>
+</header>

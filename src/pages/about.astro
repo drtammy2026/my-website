@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Credentials from '../components/Credentials.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+<Base title="About" description="Meet Dr. Tammy Young, D.Min., PCC: coach, minister, speaker, and founder of One Heart One Hope Coaching in Sarasota, FL.">
+  <section class="section white">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-portrait-wrap">
+          <img class="about-portrait" src="/images/about-portrait.jpg" width="900" height="600" alt="Dr. Tammy Young seated with a warm cup of coffee, smiling">
+          <div class="badge-float">
+            <img src="/images/icf-pcc-badge.jpg" width="200" height="200" loading="lazy" alt="ICF Professional Certified Coach badge">
+          </div>
+        </div>
+        <div class="about-content prose">
+          <p class="section-eyebrow">About Dr. Tammy</p>
+          <h1 class="section-heading">A <em>regular gal</em> with a doctorate and a calling</h1>
+          <p>I'm a daughter, first-born, type-A leader, loving wife, advising mother, and doting Grammy. I'm also a Doctor of Ministry and the founder of <strong>One Heart One Hope Coaching</strong>. But that's not the whole story.</p>
+          <p>For years I lived like so many of the people I now serve: doing all the right things, believing all the right truths, and still feeling the weight of something unresolved underneath. My healing journey became the foundation for everything I do. I developed tools from my own experience of radical healing. They bring Biblical truth to the center of every memory, trauma, and wounded place, and allow Jesus to heal what no plan or program ever could.</p>
+          <p>I defended my doctoral dissertation in March 2026: <em>Trauma Transformation Coaching: A Biblically Based, Jesus-Centered, Spirit-Led Coach Approach to Healing the Brokenhearted, Body, Soul, and Spirit.</em> Six years of research. A lifetime of experience.</p>
+          <p>I've spoken to handfuls of people in cozy rooms and to 1,400 pastors in an open-air building in Africa. I've coached across America, Canada, Spain, Thailand, and Tanzania. But my greatest joy? Sitting with one person and watching God bring transformation to the brokenhearted. <strong>He's done it for me. He can do it for you, too.</strong></p>
+        </div>
+        <Credentials />
+      </div>
+    </div>
+  </section>
+
+  <div class="truth-strip">
+    <blockquote>"The moment I know my work has landed is when I see your face change, when the pain leaves and you know, deep in your bones, that you are free."</blockquote>
+    <cite>Dr. Tammy Young</cite>
+  </div>
+
+  <!-- FRAMEWORK -->
+  <section class="section cream" id="framework">
+    <div class="section-inner narrow text-center">
+      <p class="section-eyebrow">The Framework</p>
+      <h2 class="section-heading">Lead With Wholeness</h2>
+      <p class="prose" style="color:var(--charcoal-light); font-size:1.05rem; line-height:1.8;">I believe God desires more than simply helping us survive what we've been through. He wants to restore what has been wounded, bring truth to the places where we've believed lies, and help us become who He created us to be.</p>
+      <p class="framework-tagline">That's what Lead With Wholeness is about.</p>
+      <div class="framework-box">
+        <p>One Heart One Hope Coaching exists to help men and women who know God has more for them, but unhealed wounds are still driving the wheel, keeping them stuck in cycles of addiction, anxiety, anger, or fear. We identify the root behind the patterns, replace lies with truth, and equip clients with practical tools to move forward and live from a place of genuine wholeness.</p>
+        <p>Without reliving the past. Without burning out. The result is a person who thinks differently, responds differently, and finally has the internal freedom to pursue and lead the life God created them for.</p>
+      </div>
+      <p class="framework-note">There is no guilt. No shame. No blame. We simply get real about what's there and invite God into the process.</p>
+    </div>
+  </section>
+
+  <!-- THE WORK -->
+  <section class="section sage">
+    <div class="section-inner split">
+      <img class="split-img" src="/images/in-session.jpg" width="900" height="600" loading="lazy" alt="Dr. Tammy Young in session, reading from scripture">
+      <div class="prose">
+        <p class="section-eyebrow">The Work</p>
+        <h2 class="section-heading small">Trauma does not define<br><em>who you are.</em></h2>
+        <p>Our soul is our mind, our will, and our emotions. Trauma takes root there. And that's exactly where Jesus does His deepest healing work. Not on the surface, not with a new plan, but at the very place where the pain began.</p>
+        <p>You are a tri-fold being: body, soul, and spirit. Healing that doesn't reach all three is incomplete. This work goes all the way down.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="See how Dr. Tammy can <em>help</em>"
+    text="See the services Dr. Tammy offers, or reach out to start with a complimentary discovery call."
+    href="/services"
+    label="Explore Services"
+    secondaryHref="/contact"
+    secondaryLabel="Get in Touch"
+  />
+</Base>
